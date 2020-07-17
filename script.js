@@ -50,10 +50,15 @@ let gameBoard = (function() {
             squareText = square.innerHTML;
             // playSquare(squareID, squareText)
             if (playerTurn == 1 & squareText == ""){
+                console.log(playerTurn);
                 square.innerHTML = "X"
-            };
-            if (playerTurn == 2 & squareText == ""){
+                playerTurn = 2;
+                console.log(playerTurn);
+            } else if (playerTurn == 2 & squareText == ""){
+                console.log(playerTurn);
                 square.innerHTML = "O"
+                playerTurn = 1;
+                console.log(playerTurn);
             };
         }));
 
