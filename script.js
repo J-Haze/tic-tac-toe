@@ -1,18 +1,34 @@
+let playerTurn = 1;
+
 let gameBoard = (function() {
-    let boardArray = ["O","O","O",
-                      "O","X","O",
-                      "O","O","O"            
+    let boardArray = ["","","",
+                      "","","",
+                      "","",""            
                     ];
     // return boardArray
-    let TL = document.getElementById("T-L")
-    let TM = document.getElementById("T-M")
-    let TR = document.getElementById("T-R")
-    let ML = document.getElementById("M-L")
-    let MM = document.getElementById("M-M")
-    let MR = document.getElementById("M-R")
-    let BL = document.getElementById("B-L")
-    let BM = document.getElementById("B-M")
-    let BR = document.getElementById("B-R")
+    let TL = document.getElementById("TL")
+    let TM = document.getElementById("TM")
+    let TR = document.getElementById("TR")
+    let ML = document.getElementById("ML")
+    let MM = document.getElementById("MM")
+    let MR = document.getElementById("MR")
+    let BL = document.getElementById("BL")
+    let BM = document.getElementById("BM")
+    let BR = document.getElementById("BR")
+
+    let squares = document.querySelectorAll('.square');
+
+    // function playSquare(squareID, squareText){
+    //     // If play 1 and square is empty => X
+    //     // If player 2 and square is empty => O
+    //     if (playerTurn == 1 & squareText == ""){
+    //         square.innerHTML = "X"
+    //     };
+    //     if (playerTurn == 2 & squareText == ""){
+    //         square.innerHTML = "O"
+    //     };
+
+    // };
 
     let render = function() {
         TL.innerHTML = boardArray[0];
@@ -25,6 +41,21 @@ let gameBoard = (function() {
         BM.innerHTML = boardArray[7];
         BR.innerHTML = boardArray[8];
         
+        //logic that makes sure game is still playing?
+
+        squares.forEach(square => square.addEventListener('click', () =>{
+            //logic that makes sure game is still playing?
+            console.log("square.id:", square.id)
+            squareID = square.id;
+            squareText = square.innerHTML;
+            // playSquare(squareID, squareText)
+            if (playerTurn == 1 & squareText == ""){
+                square.innerHTML = "X"
+            };
+            if (playerTurn == 2 & squareText == ""){
+                square.innerHTML = "O"
+            };
+        }));
 
     };
 
