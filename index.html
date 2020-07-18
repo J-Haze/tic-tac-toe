@@ -36,15 +36,15 @@
     </div>
 
     <div id="modal" class="modal">
-        <div class="modal-content">
+        <div id="modal-content">
           <form id="form"> 
+            <div id=gameSetup>Game Setup:</div>
             <input type="text" id="playerOneInput" class="form-input" value="Player One"></input>
             <input type="text" id="playerTwoInput" class="form-input" value="Player Two"></input>
-            <!-- <div id="radio-input" class="form-input">
-              <input type="radio" id="readForm" name="readStatus" value="read" checked>Read</input>
-              <input type="radio" id="readingForm" name="readStatus" value="reading">Reading</input>
-              <input type="radio" id="notReadForm" name="readStatus" value="notRead">Not Read</input>
-            </div> -->
+            <div id="radio-input" class="form-input">
+              <input type="radio" id="vsPlayer" name="playMode" value="PvP" checked>2 Player</input>
+              <input type="radio" id="vsComputer" name="playMode" value="PvC">Play Computer</input>
+            </div>
             <button type="button" id="playButton">Play</button>
           </form>
         </div>
