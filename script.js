@@ -2,8 +2,8 @@ let playerTurn = 1;
 
 let modal = document.getElementById("modal");
 let playButton = document.getElementById("playButton");
-let playerOneName = "p1";
-let playerTwoName = "p2";
+// let playerOneName = "p1";
+// let playerTwoName = "p2";
 
 
 playButton.addEventListener('click', () => {
@@ -19,31 +19,8 @@ playButton.addEventListener('click', () => {
     playGame();
     });
 
-    
-
-// function getNames() {
-//     //Modal & form
-//     let modal = document.getElementById("modal");
-//     let playButton = document.getElementById("playButton");
-//     let playerOneName = "p1";
-//     let playerTwoName = "p2";
-
-//     playButton.addEventListener('click', () => {
-//     // let form = document.getElementById("form");
-//     let playerOneName = document.getElementById("playerOneInput").value;
-//     let playerTwoName = document.getElementById("playerTwoInput").value;
 //     // let readValue = document.querySelector('input[name="readStatus"]:checked').value;
-//     if (!playerOneName || !playerTwoName) return
-//     modal.style.display = "none";
-//     });
-//     console.log(playerOneName);
-//     console.log(playerTwoName);
-//     names = [playerOneName, playerTwoName];
-//     return names
-//     // const playerOneName = "Player 1"
-//     // const playerTwoName = "Player 2"
-    
-// };
+
 
 function playGame(){
 
@@ -65,7 +42,6 @@ let gameBoard = (function() {
     turn.innerHTML = `It is ${playerOneName}'s Turn`
 
     gameOver = false;
-
 
     let render = function() {
         let TL = document.getElementById("TL")
@@ -90,15 +66,6 @@ let gameBoard = (function() {
         BM.innerHTML = boardArray[7]; //Bottom-Middle Square
         BR.innerHTML = boardArray[8]; //Bottom-Right Square
 
-
-
-        //logic that makes sure game is still playing?
-
-        //check after the click to make sure it isn't a win or tie.
-        //Winning cases: Top Row, Mid Row, Bot Row, Left Col, Mid Col, Right Col, T-B Diag, B-T Diag
-        //Tie: if all squares are full, and there isn't a winner
-
-        //Checks for a Winner or a Tie
         function checkResult(){
             tl = TL.innerHTML;
             tm = TM.innerHTML;
@@ -145,34 +112,25 @@ let gameBoard = (function() {
             };
         };   
 
-        if (gameOver != true){
-            squares.forEach(square => square.addEventListener('click', () =>{
-                //logic that makes sure game is still playing?
-                // console.log("square.id:", square.id)
-                squareID = square.id;
-                squareText = square.innerHTML;
-                if (playerTurn == 1 & squareText == ""){
-                    // console.log(playerTurn);
-                    square.innerHTML = "X"
-                    playerTurn = 2;
-                    turn.innerHTML = `It is ${playerTwoName}'s Turn`
-                    // console.log(playerTurn);
-                } else if (playerTurn == 2 & squareText == ""){
-                    // console.log(playerTurn);
-                    square.innerHTML = "O"
-                    playerTurn = 1;
-                    turn.innerHTML = `It is ${playerOneName}'s Turn`
-                    // console.log(playerTurn);
-                };
-                checkResult();
-            }));
-        }
+        squares.forEach(square => square.addEventListener('click', () =>{
+            if (gameOver == true) return
+            squareID = square.id;
+            squareText = square.innerHTML;
+            if (playerTurn == 1 & squareText == ""){
+                square.innerHTML = "X"
+                playerTurn = 2;
+                turn.innerHTML = `It is ${playerTwoName}'s Turn`
+            } else if (playerTurn == 2 & squareText == ""){
+                square.innerHTML = "O"
+                playerTurn = 1;
+                turn.innerHTML = `It is ${playerOneName}'s Turn`
+            };
+            checkResult();
+        }));
     };
-
     return {
         render: render
     }
-
 })();
 
 gameBoard.render();
