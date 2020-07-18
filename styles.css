@@ -58,12 +58,26 @@ body {
     border-right: none;
 }
 
-
-#resetButton{
+#btnContainer{
+    display: flex;
+    /* justify-content: center;     */
+}
+.button{
     margin-top: 30px;
     display: flex;
+}
+
+#playerButton{
+    width: 115px;
+    justify-content: center;
     margin-left: auto;
+    margin-right: 5px;
+}
+#resetButton{
+    width: 115px;
+    justify-content: center;
     margin-right: auto;
+    margin-left: 5px;
 }
 
 .modal{
