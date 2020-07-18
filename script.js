@@ -6,6 +6,12 @@ function getNames() {
     return [playerOneName, playerTwoName]
 };
 
+let resetButton = document.getElementById("resetButton");
+resetButton.onclick = function() {
+    location.reload();
+};
+
+
 let gameBoard = (function() {
     let boardArray = ["","","",
                       "","","",
@@ -34,7 +40,7 @@ let gameBoard = (function() {
     console.log(names)
     playerOneName = names[0];
     playerTwoName = names[1];
-    let turn = document.getElementById("turn")
+    let turn = document.getElementById("turn");
     turn.innerHTML = `It is ${playerOneName}'s Turn`
 
     gameOver = false;
@@ -114,33 +120,33 @@ let gameBoard = (function() {
                 gameOver = true;
             }else if (tie == true){
                 turn.innerHTML = `The game is a tie!`
+                gameOver = true;
             };
         };   
 
-        squares.forEach(square => square.addEventListener('click', () =>{
-            //logic that makes sure game is still playing?
-            // console.log("square.id:", square.id)
-            squareID = square.id;
-            squareText = square.innerHTML;
-            if (playerTurn == 1 & squareText == ""){
-                // console.log(playerTurn);
-                square.innerHTML = "X"
-                playerTurn = 2;
-                turn.innerHTML = `It is ${playerTwoName}'s Turn`
-                // console.log(playerTurn);
-            } else if (playerTurn == 2 & squareText == ""){
-                // console.log(playerTurn);
-                square.innerHTML = "O"
-                playerTurn = 1;
-                turn.innerHTML = `It is ${playerOneName}'s Turn`
-                // console.log(playerTurn);
-            };
-            checkResult();
-        }));
-
+        if (gameOver != true){
+            squares.forEach(square => square.addEventListener('click', () =>{
+                //logic that makes sure game is still playing?
+                // console.log("square.id:", square.id)
+                squareID = square.id;
+                squareText = square.innerHTML;
+                if (playerTurn == 1 & squareText == ""){
+                    // console.log(playerTurn);
+                    square.innerHTML = "X"
+                    playerTurn = 2;
+                    turn.innerHTML = `It is ${playerTwoName}'s Turn`
+                    // console.log(playerTurn);
+                } else if (playerTurn == 2 & squareText == ""){
+                    // console.log(playerTurn);
+                    square.innerHTML = "O"
+                    playerTurn = 1;
+                    turn.innerHTML = `It is ${playerOneName}'s Turn`
+                    // console.log(playerTurn);
+                };
+                checkResult();
+            }));
+        }
     };
-
-
 
     return {
         render: render
@@ -149,21 +155,9 @@ let gameBoard = (function() {
 })();
 
 
-
-// function displayDisplay(){
-//     let oneName = document.getElementById("playerOneName")
-//     let twoName = document.getElementById("playerTwoName")
-//     // let oneScore = document.getElementById("playerOneScore")
-//     // let twoScore = document.getElementById("playerTwoScore")
-
-//     oneName.innerHTML = playerOneName;
-//     twoName.innerHTML = playerTwoName;
-//     // oneScore.innerHTML = playerOneScore;
-//     // twoScore.innerHTML = playerTwoScore;
-
-// };
-
-//playGame();
-
-// displayDisplay();
 gameBoard.render();
+
+
+
+
+
