@@ -1,23 +1,31 @@
+body {
+    background-color: black;
+}
+
 #head{
     display: flex;
     align-items: center;
     justify-content: center;
+    color: white;
+    font-size: 3em;
+    /* font-weight: bold; */
 }
 
 #turn{
-    margin-top: 10px;
+    margin-top: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
+    color: white;
+    font-size: 2em;
 }
 
 #board{
-    border: 1px solid red;
-    height: 306px;
-    width: 306px;
+    height: 318px;
+    width: 318px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 30px;
+    margin-top: 20px;
 }
 .row{
     display: flex;
@@ -29,12 +37,30 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 4em;
-    border: 1px solid black;
+    font-size: 5em;
+    border: 3px solid white;
+    color: rgb(214, 41, 41);
 }
 
+#TL, #TM, #TR {
+    border-top: none;
+}
+
+#BL, #BM, #BR{
+    border-bottom: none;
+}
+
+#TL, #ML, #BL{
+    border-left: none;
+}
+
+#TR, #MR, #BR{
+    border-right: none;
+}
+
+
 #resetButton{
-    margin-top: 10px;
+    margin-top: 30px;
     display: flex;
     margin-left: auto;
     margin-right: auto;
@@ -74,4 +100,19 @@
       margin-right: auto;
   }
 
+  #playButton{
+    width: 50px;
+    min-width: 50px;
+    margin-left: 20px;
+    margin-right: auto;
+}
 
+#signature{
+    color: rgb(214, 41, 41);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    width: 290px;
+    margin-left: auto;
+    margin-right: auto;
+}
