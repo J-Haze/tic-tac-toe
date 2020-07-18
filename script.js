@@ -2,8 +2,6 @@ let playerTurn = 1;
 
 let modal = document.getElementById("modal");
 let playButton = document.getElementById("playButton");
-// let playerOneName = "p1";
-// let playerTwoName = "p2";
 
 
 playButton.addEventListener('click', () => {
@@ -20,12 +18,32 @@ playButton.addEventListener('click', () => {
     });
 
 //     // let readValue = document.querySelector('input[name="readStatus"]:checked').value;
-
+function clearGame(){
+    let boardArray = ["","","",
+                      "","","",
+                      "","",""            
+                    ];
+    TL.innerHTML = boardArray[0]; //Top-Left Square
+    TM.innerHTML = boardArray[1]; //Top-Middle Square
+    TR.innerHTML = boardArray[2]; //Top-Right Square
+    ML.innerHTML = boardArray[3]; //Middle-Left Square
+    MM.innerHTML = boardArray[4]; //Middle-Middle Square
+    MR.innerHTML = boardArray[5]; //Middle-Right Square
+    BL.innerHTML = boardArray[6]; //Bottom-Left Square
+    BM.innerHTML = boardArray[7]; //Bottom-Middle Square
+    BR.innerHTML = boardArray[8]; //Bottom-Right Square
+}
 
 function playGame(){
 
 let resetButton = document.getElementById("resetButton");
 resetButton.onclick = function() {
+    clearGame();
+    playGame();
+};
+
+let playerButton = document.getElementById("playerButton");
+playerButton.onclick = function() {
     location.reload();
 };
 
