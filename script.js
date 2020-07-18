@@ -130,6 +130,29 @@ let gameBoard = (function() {
 
 })();
 
-// console.log(gameBoard)
+function getNames() {
+    // playerOneName = prompt("Enter Player 1 Name:", "Player 1")
+    // playerTwoName = prompt("Enter Player 2 Name:", "Player 2")
+    playerOneName = "Player 1"
+    playerTwoName = "Player 2"
+    playerOneScore = 1;
+    playerTwoScore = 3;
+};
 
+function displayDisplay(){
+    let oneName = document.getElementById("playerOneName")
+    let twoName = document.getElementById("playerTwoName")
+    // let oneScore = document.getElementById("playerOneScore")
+    // let twoScore = document.getElementById("playerTwoScore")
+
+    oneName.innerHTML = playerOneName;
+    twoName.innerHTML = playerTwoName;
+    // oneScore.innerHTML = playerOneScore;
+    // twoScore.innerHTML = playerTwoScore;
+
+};
+
+//playGame();
+getNames();
+displayDisplay();
 gameBoard.render();
