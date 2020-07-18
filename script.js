@@ -1,5 +1,11 @@
 let playerTurn = 1;
 
+function getNames() {
+    const playerOneName = "Player 1"
+    const playerTwoName = "Player 2"
+    return [playerOneName, playerTwoName]
+};
+
 let gameBoard = (function() {
     let boardArray = ["","","",
                       "","","",
@@ -23,8 +29,16 @@ let gameBoard = (function() {
     //check after the click to make sure it isn't a win or tie.
     //Winning cases: Top Row, Mid Row, Bot Row, Left Col, Mid Col, Right Col, T-B Diag, B-T Diag
     //Tie: if all squares are full, and there isn't a winner
+    console.log(getNames())            
+    names = getNames();
+    console.log(names)
+    playerOneName = names[0];
+    playerTwoName = names[1];
+    let turn = document.getElementById("turn")
+    turn.innerHTML = `It is ${playerOneName}'s Turn`
 
     gameOver = false;
+
 
     let render = function() {
         let TL = document.getElementById("TL")
@@ -48,7 +62,9 @@ let gameBoard = (function() {
         BL.innerHTML = boardArray[6]; //Bottom-Left Square
         BM.innerHTML = boardArray[7]; //Bottom-Middle Square
         BR.innerHTML = boardArray[8]; //Bottom-Right Square
-        
+
+
+
         //logic that makes sure game is still playing?
 
         //check after the click to make sure it isn't a win or tie.
@@ -83,7 +99,7 @@ let gameBoard = (function() {
             (tl == "X" && mm == "X" && br == "X") || //Top-Left to Bottom-Right Diagonal Player 1
             (bl == "X" && mm == "X" && tr == "X") //Bottom-Left to Top-Right Diagonal Player 1
             ){
-                console.log("Player 1 Wins!")
+                turn.innerHTML = `${playerOneName} is the Winner!`
                 gameOver = true;
             } else if ((tl == "O" && tm == "O" && tr == "O") || //Top Row Player 2
             (ml == "O" && mm == "O" && mr == "O") ||  //Middle Row Player 2
@@ -94,10 +110,10 @@ let gameBoard = (function() {
             (tl == "O" && mm == "O" && br == "O") || //Top-Left to Bottom-Right Diagonal Player 2
             (bl == "O" && mm == "O" && tr == "O") //Bottom-Left to Top-Right Diagonal Player 2
             ){
-                console.log("Player 2 Wins!")
+                turn.innerHTML = `${playerTwoName} is the Winner!`
                 gameOver = true;
             }else if (tie == true){
-                console.log("Tie!")
+                turn.innerHTML = `The game is a tie!`
             };
         };   
 
@@ -110,11 +126,13 @@ let gameBoard = (function() {
                 // console.log(playerTurn);
                 square.innerHTML = "X"
                 playerTurn = 2;
+                turn.innerHTML = `It is ${playerTwoName}'s Turn`
                 // console.log(playerTurn);
             } else if (playerTurn == 2 & squareText == ""){
                 // console.log(playerTurn);
                 square.innerHTML = "O"
                 playerTurn = 1;
+                turn.innerHTML = `It is ${playerOneName}'s Turn`
                 // console.log(playerTurn);
             };
             checkResult();
@@ -130,29 +148,22 @@ let gameBoard = (function() {
 
 })();
 
-function getNames() {
-    // playerOneName = prompt("Enter Player 1 Name:", "Player 1")
-    // playerTwoName = prompt("Enter Player 2 Name:", "Player 2")
-    playerOneName = "Player 1"
-    playerTwoName = "Player 2"
-    playerOneScore = 1;
-    playerTwoScore = 3;
-};
 
-function displayDisplay(){
-    let oneName = document.getElementById("playerOneName")
-    let twoName = document.getElementById("playerTwoName")
-    // let oneScore = document.getElementById("playerOneScore")
-    // let twoScore = document.getElementById("playerTwoScore")
 
-    oneName.innerHTML = playerOneName;
-    twoName.innerHTML = playerTwoName;
-    // oneScore.innerHTML = playerOneScore;
-    // twoScore.innerHTML = playerTwoScore;
+// function displayDisplay(){
+//     let oneName = document.getElementById("playerOneName")
+//     let twoName = document.getElementById("playerTwoName")
+//     // let oneScore = document.getElementById("playerOneScore")
+//     // let twoScore = document.getElementById("playerTwoScore")
 
-};
+//     oneName.innerHTML = playerOneName;
+//     twoName.innerHTML = playerTwoName;
+//     // oneScore.innerHTML = playerOneScore;
+//     // twoScore.innerHTML = playerTwoScore;
+
+// };
 
 //playGame();
-getNames();
-displayDisplay();
+
+// displayDisplay();
 gameBoard.render();
