@@ -1,8 +1,10 @@
 let playerTurn = 1;
+let mode = "PvC";
 
 let modal = document.getElementById("modal");
 let playButton = document.getElementById("playButton");
 
+const delay = ms => new Promise(res => setTimeout(res, ms));
 
 playButton.addEventListener('click', () => {
     // let form = document.getElementById("form");
@@ -19,6 +21,7 @@ playButton.addEventListener('click', () => {
 
 //     // let readValue = document.querySelector('input[name="readStatus"]:checked').value;
 function clearGame(){
+    gameOver = false;
     let boardArray = ["","","",
                       "","","",
                       "","",""            
@@ -31,7 +34,7 @@ function clearGame(){
     MR.innerHTML = boardArray[5]; //Middle-Right Square
     BL.innerHTML = boardArray[6]; //Bottom-Left Square
     BM.innerHTML = boardArray[7]; //Bottom-Middle Square
-    BR.innerHTML = boardArray[8]; //Bottom-Right Square
+    BR.innerHTML = boardArray[8]; //Bottom-Right Square 
 }
 
 function playGame(){
@@ -40,6 +43,8 @@ let resetButton = document.getElementById("resetButton");
 resetButton.onclick = function() {
     clearGame();
     playGame();
+    playerTurn = 1;
+    turn.innerHTML = `It is ${playerOneName}'s Turn`
 };
 
 let playerButton = document.getElementById("playerButton");
@@ -55,7 +60,11 @@ let gameBoard = (function() {
                     ];
           
     playerOneName = names[0];
-    playerTwoName = names[1];
+    if (mode == "PvC"){
+        playerTwoName = "Computer"
+    } else{
+        playerTwoName = names[1];
+    }
     let turn = document.getElementById("turn");
     turn.innerHTML = `It is ${playerOneName}'s Turn`
 
@@ -130,20 +139,72 @@ let gameBoard = (function() {
             };
         };   
 
+        let aiMoving = false;
         squares.forEach(square => square.addEventListener('click', () =>{
             if (gameOver == true) return
+            if (aiMoving == true) return
             squareID = square.id;
             squareText = square.innerHTML;
             if (playerTurn == 1 & squareText == ""){
                 square.innerHTML = "X"
                 playerTurn = 2;
                 turn.innerHTML = `It is ${playerTwoName}'s Turn`
-            } else if (playerTurn == 2 & squareText == ""){
+                checkResult();
+                // playerTurn = 2;
+                // turn.innerHTML = `It is ${playerTwoName}'s Turn`
+                if (mode == "PvC" & gameOver == false){
+                    boardArray[0] =TL.innerHTML; //Top-Left Square
+                    boardArray[1] = TM.innerHTML; //Top-Middle Square
+                    boardArray[2] = TR.innerHTML; //Top-Right Square
+                    boardArray[3] = ML.innerHTML; //Middle-Left Square
+                    boardArray[4] = MM.innerHTML; //Middle-Middle Square
+                    boardArray[5] = MR.innerHTML; //Middle-Right Square
+                    boardArray[6] = BL.innerHTML; //Bottom-Left Square
+                    boardArray[7] = BM.innerHTML; //Bottom-Middle Square
+                    boardArray[8] = BR.innerHTML; //Bottom-Right Square
+                    console.log(boardArray)
+                    
+                    empty = false;
+                    while (empty == false){
+                        rand = Math.floor((Math.random() * 8));
+                        console.log("rand:", rand)
+                        aiMoving = true;
+                        if (boardArray[rand] == ""){
+                            const wait = Math.random() * 500 + 300;
+                            setTimeout(function () {
+                                boardArray[rand] = "O";
+                                TL.innerHTML = boardArray[0]; //Top-Left Square
+                                TM.innerHTML = boardArray[1]; //Top-Middle Square
+                                TR.innerHTML = boardArray[2]; //Top-Right Square
+                                ML.innerHTML = boardArray[3]; //Middle-Left Square
+                                MM.innerHTML = boardArray[4]; //Middle-Middle Square
+                                MR.innerHTML = boardArray[5]; //Middle-Right Square
+                                BL.innerHTML = boardArray[6]; //Bottom-Left Square
+                                BM.innerHTML = boardArray[7]; //Bottom-Middle Square
+                                BR.innerHTML = boardArray[8]; //Bottom-Right Square
+                                aiMoving = false;
+                                checkResult();
+                            }, wait);
+
+                            console.log("BA2:", boardArray)
+                            empty = true;
+                        }
+                // checkResult();
+                if (gameOver == false){
+                    playerTurn = 1;
+                    turn.innerHTML = `It is ${playerOneName}'s Turn`
+                }
+                }
+                }
+                // checkResult();
+            } else if (playerTurn == 2 & squareText == "" && mode == "PvP"){
                 square.innerHTML = "O"
                 playerTurn = 1;
                 turn.innerHTML = `It is ${playerOneName}'s Turn`
+                checkResult();
             };
-            checkResult();
+            
+
         }));
     };
     return {
@@ -152,8 +213,9 @@ let gameBoard = (function() {
 })();
 
 gameBoard.render();
-
 }
 
 
+// vsComputer{
 
+// }
