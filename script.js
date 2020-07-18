@@ -1,10 +1,51 @@
 let playerTurn = 1;
 
-function getNames() {
-    const playerOneName = "Player 1"
-    const playerTwoName = "Player 2"
-    return [playerOneName, playerTwoName]
-};
+let modal = document.getElementById("modal");
+let playButton = document.getElementById("playButton");
+let playerOneName = "p1";
+let playerTwoName = "p2";
+
+
+playButton.addEventListener('click', () => {
+    // let form = document.getElementById("form");
+    let playerOneName = document.getElementById("playerOneInput").value;
+    let playerTwoName = document.getElementById("playerTwoInput").value;
+    // let readValue = document.querySelector('input[name="readStatus"]:checked').value;
+    if (!playerOneName || !playerTwoName) return
+    console.log(playerOneName);
+    console.log(playerTwoName);
+    names = [playerOneName, playerTwoName];
+    modal.style.display = "none";
+    playGame();
+    });
+
+    
+
+// function getNames() {
+//     //Modal & form
+//     let modal = document.getElementById("modal");
+//     let playButton = document.getElementById("playButton");
+//     let playerOneName = "p1";
+//     let playerTwoName = "p2";
+
+//     playButton.addEventListener('click', () => {
+//     // let form = document.getElementById("form");
+//     let playerOneName = document.getElementById("playerOneInput").value;
+//     let playerTwoName = document.getElementById("playerTwoInput").value;
+//     // let readValue = document.querySelector('input[name="readStatus"]:checked').value;
+//     if (!playerOneName || !playerTwoName) return
+//     modal.style.display = "none";
+//     });
+//     console.log(playerOneName);
+//     console.log(playerTwoName);
+//     names = [playerOneName, playerTwoName];
+//     return names
+//     // const playerOneName = "Player 1"
+//     // const playerTwoName = "Player 2"
+    
+// };
+
+function playGame(){
 
 let resetButton = document.getElementById("resetButton");
 resetButton.onclick = function() {
@@ -17,27 +58,7 @@ let gameBoard = (function() {
                       "","","",
                       "","",""            
                     ];
-    // return boardArray
-    // let TL = document.getElementById("TL")
-    // let TM = document.getElementById("TM")
-    // let TR = document.getElementById("TR")
-    // let ML = document.getElementById("ML")
-    // let MM = document.getElementById("MM")
-    // let MR = document.getElementById("MR")
-    // let BL = document.getElementById("BL")
-    // let BM = document.getElementById("BM")
-    // let BR = document.getElementById("BR")
-
-    // let squares = document.querySelectorAll('.square');
-
-    //make the playSquare into a function?
-
-    //check after the click to make sure it isn't a win or tie.
-    //Winning cases: Top Row, Mid Row, Bot Row, Left Col, Mid Col, Right Col, T-B Diag, B-T Diag
-    //Tie: if all squares are full, and there isn't a winner
-    console.log(getNames())            
-    names = getNames();
-    console.log(names)
+          
     playerOneName = names[0];
     playerTwoName = names[1];
     let turn = document.getElementById("turn");
@@ -154,10 +175,9 @@ let gameBoard = (function() {
 
 })();
 
-
 gameBoard.render();
 
-
+}
 
 
 

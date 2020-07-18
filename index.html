@@ -12,27 +12,40 @@
     <div id="turn"></div>
     <div id="board">
         <div id="topRow" class="row">
-            <div id="TL" class="square">X</div>
-            <div id="TM" class="square">X</div>
-            <div id="TR" class="square">X</div>
+            <div id="TL" class="square"></div>
+            <div id="TM" class="square"></div>
+            <div id="TR" class="square"></div>
         </div>
         <div id="topRow" class="row">
-        <div id="ML" class="square">X</div>
-        <div id="MM" class="square">X</div>
-        <div id="MR" class="square">X</div>
+        <div id="ML" class="square"></div>
+        <div id="MM" class="square"></div>
+        <div id="MR" class="square"></div>
         </div>
 
         <div id="topRow" class="row">
-        <div id="BL" class="square">X</div>
-        <div id="BM" class="square">X</div>
-        <div id="BR" class="square">X</div>
+        <div id="BL" class="square"></div>
+        <div id="BM" class="square"></div>
+        <div id="BR" class="square"></div>
         </div>
 
         <div id="btnContainer">
         <button id="resetButton">New Game</button>
         </div>
-
     </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+          <form id="form"> 
+            <input type="text" id="playerOneInput" class="form-input" value="Player One"></input>
+            <input type="text" id="playerTwoInput" class="form-input" value="Player Two"></input>
+            <!-- <div id="radio-input" class="form-input">
+              <input type="radio" id="readForm" name="readStatus" value="read" checked>Read</input>
+              <input type="radio" id="readingForm" name="readStatus" value="reading">Reading</input>
+              <input type="radio" id="notReadForm" name="readStatus" value="notRead">Not Read</input>
+            </div> -->
+            <button type="button" id="playButton">Play</button>
+          </form>
+        </div>
   
 <script src="script.js"></script>
 </body>
