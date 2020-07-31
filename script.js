@@ -156,9 +156,11 @@ function playGame(mode){
                 squareID = square.id;
                 squareText = square.innerHTML;
                 if (playerTurn == 1 & squareText == ""){
-                    square.innerHTML = "X"
+                    square.innerHTML = "X";
+                    console.log("check1")
+                    turn.innerHTML = `It is ${playerTwoName}'s Turn`;
+                    console.log("check2")
                     playerTurn = 2;
-                    turn.innerHTML = `It is ${playerTwoName}'s Turn`
                     checkResult();
 
                     if (mode == "PvC" & gameOver == false){
@@ -193,13 +195,17 @@ function playGame(mode){
                                     BR.innerHTML = boardArray[8]; //Bottom-Right Square
                                     aiMoving = false;
                                     checkResult();
+                                    if (gameOver == false && mode == "PvC"){
+                                        playerTurn = 1;
+                                        turn.innerHTML = `It is ${playerOneName}'s Turn`
+                                    }
                                 }, wait);
 
                                 console.log("BA2:", boardArray)
                                 empty = true;
                             }
 
-                    if (gameOver == false){
+                    if (gameOver == false && mode == "PvP"){
                         playerTurn = 1;
                         turn.innerHTML = `It is ${playerOneName}'s Turn`
                     }
