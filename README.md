@@ -1,4 +1,4 @@
-## Calculator
+## Tic-Tac-Toe
 Tic-Tac-Toe Game built with JavaScript.
 
 🔗 **Live preview** of the app is [here](https://j-haze.github.io/tic-tac-toe).
